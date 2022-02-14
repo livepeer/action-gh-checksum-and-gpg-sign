@@ -2,4 +2,8 @@
 
 set -e
 
-env
+env | sort
+
+echo "current dir: $PWD"
+
+ls -lh
