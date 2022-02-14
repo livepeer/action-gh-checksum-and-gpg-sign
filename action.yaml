@@ -1,0 +1,26 @@
+name: GPG sign and checksum generation
+description: |
+  Creates checksum (sha256) and gpg detached signatures for artifacts.
+author: hjpotter92
+
+inputs:
+  artifacts-dir:
+    description: Directory path to release artifacts. Defaults to `./releases`
+    required: false
+    default: './releases'
+  gpg-key:
+    description: Private gpg key for signing
+    required: false
+    default: ''
+  gpg-key-passphrase:
+    description: Passphrase, if any, for the gpg signing key
+    required: false
+    default: ''
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    ARTIFACTS_DIR: ${{ inputs.artifacts-dir }}
+    CI_GPG_SIGNING_KEY: ${{ inputs.gpg-key }}
+    CI_GPG_SIGNING_KEY_PASSPHRASE: ${{ inputs.gpg-key-passphrase }}
