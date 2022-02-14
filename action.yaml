@@ -5,9 +5,13 @@ author: hjpotter92
 
 inputs:
   artifacts-dir:
-    description: Directory path to release artifacts. Defaults to `./releases`
+    description: Directory path to release artifacts. Defaults to `releases`
     required: false
-    default: './releases'
+    default: 'releases'
+  release-name:
+    description: Current release name, if available, will be used as prefix to checksums file. Defaults to `latest`
+    required: false
+    default: 'latest'
   gpg-key:
     description: Private gpg key for signing
     required: false
@@ -24,3 +28,4 @@ runs:
     ARTIFACTS_DIR: ${{ inputs.artifacts-dir }}
     CI_GPG_SIGNING_KEY: ${{ inputs.gpg-key }}
     CI_GPG_SIGNING_KEY_PASSPHRASE: ${{ inputs.gpg-key-passphrase }}
+    RELEASE_NAME: ${{ inputs.release-name }}
