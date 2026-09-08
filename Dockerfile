@@ -1,6 +1,8 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
-RUN apt update && apt install -yqq gnupg
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gnupg \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY scripts/entrypoint.bash /
 
